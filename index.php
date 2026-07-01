@@ -34,6 +34,34 @@
   }
 
 
+  function isExistDepartement(array $departements,  $departement ): bool {
+      foreach ($departements as $depart) {
+         if($depart['code'] === $departement['code']) {
+                return true; 
+            }
+        }
+                return false; 
+  }
+
+  function tableauDepartements(array $employes): array {
+        $departements = [];
+        foreach ($employes as  $employe) {
+          foreach ($employe["departements"] as $departement) {
+                     if (!isExistDepartement($departements,$departement)) {
+                          $departements[] = $departement;
+                     }
+              }
+          }
+       return $departements;
+  }
+
+ $employes = initialisationEmployes();
+ $tableauDpart = tableauDepartements($employes);
+
+  var_dump($tableauDpart);
+
+
+
 
 
 
